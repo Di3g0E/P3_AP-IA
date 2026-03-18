@@ -1,0 +1,27 @@
+# Entornos virtuales
+venv/
+.env
+
+# Archivos compilados en Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Modelos y pesos entrenados
+models/
+
+# Registros (Logs)
+logs/
+
+# Entornos de desarrollo o herramientas extra
+.vscode/
+.idea/
+.ipynb_checkpoints/
+
+# Documentación
+doc/
+!doc/sections/
+!doc/figures/
+!doc/main.tex
+!doc/references.bib
+!doc/main.pdf
