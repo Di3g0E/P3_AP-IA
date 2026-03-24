@@ -10,6 +10,7 @@ __pycache__/
 
 # Modelos y pesos entrenados
 models/
+!src/models/
 
 # Registros (Logs)
 logs/
