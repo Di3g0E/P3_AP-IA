@@ -71,7 +71,7 @@ class OptimizedOCREngine:
         # No quiero que se tenga en cuenta cuando pone "Total Qty" o "Total Items"
         # Por lo que voy a filtrar esas palabras
         raw_text_list = [text for text in raw_text_list if "Total Qty" not in text and "Total Items" not in text]
-        keyword_regex = re.compile(r'\b(TOTAL|TL|AMT|DUE|SUBTOTAL)\b', re.IGNORECASE)
+        keyword_regex = re.compile(r'\b(TOTAL|TOTAI|TL|AMT|DUE|SUBTOTAL)\b', re.IGNORECASE)
         number_regex = re.compile(r'([$€£]?\s*\d+[\.,\s]*\d*)')
 
         for i, text in enumerate(raw_text_list):

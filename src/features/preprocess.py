@@ -1,16 +1,19 @@
 import cv2
 import numpy as np
+from src.utils.image_processing import crop_document
 
 
 def preprocess_image(img, ocr_engine):
-    """Preprocesa una imagen para el OCR."""
-    h_orig, w_orig = img.shape[:2]
+    """Preprocesa una imagen para el OCR con recorte de documento."""
+    img_cropped = crop_document(img)
+    
+    h_orig, w_orig = img_cropped.shape[:2]
     MAX_WIDTH = 1200
     if w_orig > MAX_WIDTH:
         ratio = MAX_WIDTH / float(w_orig)
-        img_downscaled = cv2.resize(img, (MAX_WIDTH, int(h_orig * ratio)))
+        img_downscaled = cv2.resize(img_cropped, (MAX_WIDTH, int(h_orig * ratio)))
     else:
-        img_downscaled = img
+        img_downscaled = img_cropped
 
     h_down, w_down = img_downscaled.shape[:2]
 
@@ -25,4 +28,3 @@ def preprocess_image(img, ocr_engine):
     reconst_down[int(0.80*h_down):h_down, 0:w_down] = prep_crops_down['Footer']
 
     return val_down, reconst_down
-    
