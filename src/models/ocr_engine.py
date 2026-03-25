@@ -68,8 +68,6 @@ class OptimizedOCREngine:
         Returns:
             Optional[float]: Valor flotante total deducido o None si no hay match.
         """
-        # No quiero que se tenga en cuenta cuando pone "Total Qty" o "Total Items"
-        # Por lo que voy a filtrar esas palabras
         raw_text_list = [text for text in raw_text_list if "Total Qty" not in text and "Total Items" not in text]
         keyword_regex = re.compile(r'\b(TOTAL|TOTAI|TL|AMT|DUE)\b', re.IGNORECASE)
         number_regex = re.compile(r'([$€£]?\s*\d+[\.,\s]*\d*)')

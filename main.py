@@ -1,4 +1,5 @@
 from src.data.data_loader import load_images
+from src.data.data_download import save_image
 from src.features.preprocess import preprocess_image
 from src.models.ocr_engine import OptimizedOCREngine
 from src.evaluation.evaluate import evaluate_performance_and_accuracy
@@ -14,10 +15,13 @@ def main():
     images = load_images()
     ocr_engine = OptimizedOCREngine()
     
-    for i, img in enumerate(images[3:8]):
-        val, prep_img = preprocess_image(img, ocr_engine)
-        print(f"Imagen {i+1}: {val}")
+    for i, img in enumerate(images[:]):
+        raw_lists, prep_img = preprocess_image(img, ocr_engine)
+        val_down = ocr_engine.find_total_value(raw_lists.get('Footer', []))
 
-#TODO: ver si dejamos o no la palabra subtotal -> Confusiones
+        if not val_down: val_down = ocr_engine.find_total_value(raw_lists.get('Body', []))
+        print(f"Imagen {i}: {val_down}")
+
+
 if __name__ == '__main__':
-    main_1()
+    main()

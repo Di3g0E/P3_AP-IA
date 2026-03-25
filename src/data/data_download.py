@@ -30,5 +30,17 @@ def download_cord_samples(num_images=20):
     except Exception as e:
         print(f"Error durante la descarga: {e}")
 
+def save_image(img, name):
+    '''Guarda una imagen en la carpeta data/processed'''
+    save_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'data', 'processed'))
+    os.makedirs(save_dir, exist_ok=True)
+    
+    filename = os.path.join(save_dir, f"{name}.jpg")
+    cv2.imwrite(filename, img)
+    
+    print(f"Imagen guardada: {filename}")
+    
+    
+
 if __name__ == "__main__":
     download_cord_samples()
