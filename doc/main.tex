@@ -15,6 +15,15 @@
 \usepackage{csquotes}
 \usepackage[style=ieee, backend=biber]{biblatex}
 \addbibresource{references.bib}
+\usepackage{placeins}
+
+% --- Evitar que los floats crucen subsecciones ---
+\makeatletter
+\AtBeginDocument{%
+  \let\origsubsection\subsection
+  \renewcommand{\subsection}{\FloatBarrier\origsubsection}%
+}
+\makeatother
 
 % --- Asegurar texto justificado (por defecto en LaTeX) ---
 \tolerance=1

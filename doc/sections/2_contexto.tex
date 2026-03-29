@@ -5,7 +5,7 @@ El problema abordado es la extracción automática del importe total de facturas
 
 El flujo de trabajo se divide en dos etapas fundamentales. La primera es el reconocimiento óptico de caracteres (OCR), que convierte los píxeles de la imagen en texto. Este paso introduce errores de lectura frecuentes: el carácter \texttt{O} se confunde con \texttt{0}, la \texttt{l} minúscula con el \texttt{1}, o la \texttt{D} con el \texttt{0}. La segunda etapa es la extracción del total a partir del texto obtenido, donde el sistema debe identificar cuál de los múltiples números presentes corresponde al importe total.
 
-Los datos utilizados provienen del dataset CORD v2 \cite{avidan2022computer}, un corpus público de recibos de restaurantes coreanos e indonesios proporcionado por Naver-Clova a través de HuggingFace. El dataset contiene aproximadamente 800 muestras de entrenamiento y 95 de test, cada una con la imagen del recibo y la anotación del total real (\textit{ground truth}).
+Los datos utilizados provienen del dataset CORD v2 \cite{avidan2022computer}, un corpus público de recibos de restaurantes coreanos e indonesios proporcionado por Naver-Clova a través de HuggingFace. El dataset contiene aproximadamente 800 muestras de entrenamiento y 100 de test y 100 de validación, cada una con la imagen del recibo y la anotación del total real (\textit{ground truth}).
 
 Para evaluar la eficacia de la extracción se utilizan las siguientes métricas:
 

@@ -14,7 +14,7 @@ Se implementaron y evaluaron ocho modelos de extracción sobre los mismos datos 
     \item \textbf{Deep Learning:} DistilBERT Reranker (clasificador binario fine-tuned) y T5 Seq2Seq (generación directa del total).
 \end{itemize}
 
-\begin{figure}[t]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{figures/comparativa_general.png}
     \caption{Comparativa general de los 8 modelos evaluados con EasyOCR: Exact Match, Match $\pm$5\% y MRE}
@@ -25,7 +25,7 @@ Como se observa en la Figura~\ref{fig:comparativa_general}, T5 obtuvo la mayor p
 
 Un hallazgo clave fue que todos los modelos alcanzan el 100\% de precisión con texto limpio (\textit{ground truth}), demostrando que \textbf{el cuello de botella es la calidad del OCR}, no el modelo de extracción.
 
-\begin{figure}[t]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/impacto_preprocesamiento.png}
     \caption{Impacto del preprocesamiento de texto OCR por modelo: la corrección de errores mejora todos los modelos entre 4 y 8 puntos porcentuales}
@@ -38,7 +38,7 @@ El preprocesamiento de texto OCR (Figura~\ref{fig:impacto_preprocesamiento}) dem
 
 Se propuso un pipeline de dos pasos para dispositivos móviles: primero Regex Keyword (0,01~ms) y, si falla, Gradient Boosting como fallback (2~ms).
 
-\begin{figure}[t]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/baseline_vs_gb.png}
     \caption{Baseline (número tras ``total'') vs Gradient Boosting usado como método principal: GB supera al baseline en todas las métricas}
@@ -51,7 +51,7 @@ Sin embargo, Regex siempre devuelve un resultado (tiene fallback al número máx
 
 El análisis de tiempos reveló que el 99,95\% del tiempo se consumía en el OCR ($\sim$4,7~s con EasyOCR). Se evaluó PaddleOCR como alternativa.
 
-\begin{figure}[t]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{figures/paddleocr_vs_easyocr.png}
     \caption{Comparativa PaddleOCR vs EasyOCR sobre CORD test: PaddleOCR es 18,8$\times$ más rápido y aporta +30~pp en Exact Match}
@@ -72,7 +72,7 @@ El pipeline final integra los hallazgos de las tres fases:
     \item \textbf{Gradient Boosting} --- Clasificador con 150 árboles y profundidad 5 que puntúa cada candidato y selecciona el de mayor probabilidad ($\sim$2~ms).
 \end{enumerate}
 
-\begin{table}[t]
+\begin{table}[htbp]
     \centering
     \caption{Métricas finales del pipeline PaddleOCR + Gradient Boosting sobre 95 muestras de test CORD}
     \label{tab:metricas_finales}
