@@ -1,0 +1,17 @@
+\section{Conclusiones}
+\label{sec:conclusiones}
+
+El desarrollo de este sistema demuestra que la combinación de un motor OCR de alta calidad con un modelo clásico de aprendizaje automático bien diseñado constituye una solución altamente competitiva para la extracción de información estructurada en documentos financieros.
+
+La experimentación en tres fases ha permitido extraer conclusiones fundamentales. En primer lugar, la comparativa de ocho modelos de extracción confirmó que \textbf{el cuello de botella reside en la calidad del OCR}, no en el modelo de extracción: todos los modelos alcanzan el 100\% de precisión con texto limpio. En segundo lugar, el preprocesamiento de errores OCR mejora consistentemente todos los modelos entre 4 y 8 puntos porcentuales, lo que justifica su inclusión permanente en el pipeline. En tercer lugar, la selección de PaddleOCR sobre EasyOCR supuso un salto cualitativo de +30 puntos porcentuales en precisión y una reducción de 18,8$\times$ en tiempo de procesamiento.
+
+El pipeline final, basado en PaddleOCR y Gradient Boosting, alcanza un 83,2\% de Exact Match con un tiempo de inferencia inferior a un segundo y un modelo de solo 2~MB. Estas características lo hacen viable para su despliegue en dispositivos móviles y aplicaciones en tiempo real, a diferencia de alternativas como T5 (900~MB, 14~s) o DistilBERT (250~MB), que no justifican su coste computacional frente a la ganancia en precisión.
+
+Como líneas futuras de trabajo se proponen:
+
+\begin{itemize}
+    \item \textbf{Ampliación del dataset de entrenamiento:} Incorporar facturas de diferentes dominios (hoteles, comercios, servicios) y con mayor variedad de idiomas y divisas para mejorar la generalización del modelo.
+    \item \textbf{Extracción de campos adicionales:} Extender el pipeline para extraer otros campos relevantes como la fecha, el nombre del establecimiento o el desglose de IVA, reutilizando la arquitectura de candidatos con características específicas por campo.
+    \item \textbf{Optimización del OCR:} Evaluar versiones más recientes de PaddleOCR y técnicas de preprocesamiento de imagen (binarización adaptativa, corrección de perspectiva) para reducir aún más los errores de lectura.
+    \item \textbf{Despliegue móvil nativo:} Exportar el modelo de Gradient Boosting a formato ONNX o CoreML para su integración directa en aplicaciones iOS y Android sin dependencia de Python.
+\end{itemize}

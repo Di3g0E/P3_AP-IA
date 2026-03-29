@@ -1,0 +1,19 @@
+\section{Contexto}
+\label{sec:contexto}
+
+El problema abordado es la extracción automática del importe total de facturas y recibos a partir de sus imágenes. Este proceso, que un humano realiza de forma casi instantánea, resulta complejo para un sistema automático debido a la enorme variabilidad en los formatos de los documentos: diferentes idiomas, divisas, disposiciones del texto, presencia de subtotales, impuestos, descuentos y otros importes que pueden confundirse con el total real.
+
+El flujo de trabajo se divide en dos etapas fundamentales. La primera es el reconocimiento óptico de caracteres (OCR), que convierte los píxeles de la imagen en texto. Este paso introduce errores de lectura frecuentes: el carácter \texttt{O} se confunde con \texttt{0}, la \texttt{l} minúscula con el \texttt{1}, o la \texttt{D} con el \texttt{0}. La segunda etapa es la extracción del total a partir del texto obtenido, donde el sistema debe identificar cuál de los múltiples números presentes corresponde al importe total.
+
+Los datos utilizados provienen del dataset CORD v2 \cite{avidan2022computer}, un corpus público de recibos de restaurantes coreanos e indonesios proporcionado por Naver-Clova a través de HuggingFace. El dataset contiene aproximadamente 800 muestras de entrenamiento y 95 de test, cada una con la imagen del recibo y la anotación del total real (\textit{ground truth}).
+
+Para evaluar la eficacia de la extracción se utilizan las siguientes métricas:
+
+\begin{itemize}
+    \item \textbf{Exact Match:} Porcentaje de facturas donde el total extraído coincide exactamente con el valor real.
+    \item \textbf{Match $\pm$5\% y $\pm$10\%:} Porcentaje de aciertos permitiendo un margen de error relativo del 5\% y 10\% respectivamente, útil para evaluar la tolerancia ante pequeños errores de OCR.
+    \item \textbf{Prediction Rate:} Porcentaje de facturas para las que el sistema es capaz de devolver una predicción (cobertura).
+    \item \textbf{MRE (Mean Relative Error):} Error relativo medio entre el valor predicho y el valor real.
+\end{itemize}
+
+El objetivo es transformar una imagen de factura en un dato numérico preciso, de forma eficiente y con un modelo lo suficientemente ligero para su despliegue en dispositivos móviles.

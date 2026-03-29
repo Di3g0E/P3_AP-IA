@@ -1,0 +1,16 @@
+\section{Estado del arte}
+\label{sec:estado_arte}
+
+La extracción de información estructurada a partir de documentos ha evolucionado significativamente en los últimos años, impulsada por los avances en OCR y en modelos de comprensión de documentos.
+
+\begin{itemize}
+    \item \textbf{Reconocimiento óptico de caracteres (OCR):} Los motores OCR modernos como EasyOCR y PaddleOCR han democratizado el acceso a la digitalización de documentos. Mientras que EasyOCR ofrece soporte multilingüe y facilidad de uso, PaddleOCR destaca por su velocidad y precisión en la detección y reconocimiento de texto en escenarios variados \cite{kumar2020extraction}. La elección del motor OCR tiene un impacto directo en la calidad del texto extraído y, por tanto, en la precisión de la extracción posterior.
+
+    \item \textbf{Extracción de campos en facturas:} Los enfoques clásicos se basan en expresiones regulares y búsqueda de palabras clave (\textit{keyword matching}), que funcionan bien en formatos estandarizados pero fallan ante la heterogeneidad del mundo real. Trabajos recientes proponen modelos de aprendizaje automático que clasifican candidatos numéricos en función de su contexto textual y posicional \cite{gunaydin2023digitization, saout2024overview}.
+
+    \item \textbf{Modelos de comprensión de documentos:} Arquitecturas como LayoutLM \cite{xu2020layoutlm} combinan información textual, visual y de disposición espacial para comprender documentos de forma integral. Sin embargo, estos modelos requieren recursos computacionales significativos (cientos de MB de almacenamiento y GPU para inferencia), lo que limita su aplicabilidad en dispositivos con recursos restringidos.
+
+    \item \textbf{Modelos generativos (Seq2Seq):} Modelos como T5 pueden generar directamente el total a partir del texto OCR, alcanzando buena precisión. No obstante, su tamaño ($\sim$900~MB) y tiempo de inferencia ($\sim$14~s por imagen en CPU) los hacen inviables para aplicaciones en tiempo real o móviles.
+
+    \item \textbf{Modelos clásicos de ML:} Algoritmos como Gradient Boosting, Random Forest y SVM ofrecen un equilibrio óptimo entre precisión y eficiencia. Cuando se combinan con un conjunto de características bien diseñado (\textit{feature engineering}), estos modelos pueden igualar o superar a arquitecturas más complejas en tareas de clasificación de candidatos, con tiempos de inferencia de milisegundos y tamaños de modelo de pocos megabytes \cite{saout2024overview}.
+\end{itemize}

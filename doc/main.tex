@@ -1,0 +1,116 @@
+\documentclass[a4paper,12pt,twoside]{article}
+
+% --- Paquetes básicos ---
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage[a4paper, top=2cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{csquotes}
+\usepackage[style=ieee, backend=biber]{biblatex}
+\addbibresource{references.bib}
+
+% --- Asegurar texto justificado (por defecto en LaTeX) ---
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
+
+% --- Redefinir \cleardoublepage para que las páginas en blanco no lleven número ---
+\makeatletter
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
+    \thispagestyle{empty}%
+    \hbox{}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\makeatother
+
+% --- Comando para páginas en blanco sin numeración ---
+\newcommand{\blankpage}{%
+    \newpage
+    \thispagestyle{empty}
+    \mbox{}
+    \newpage
+}
+
+\title{\Huge \textbf{Práctica 3: Extracción de Totales en Facturas mediante OCR y Machine Learning}}
+\author{Diego Esclarín \and Sofía Contreras}
+\date{\today}
+
+\begin{document}
+
+% --- Página 1: Portada (Interna -1) ---
+\begin{titlepage}
+    \thispagestyle{empty}
+    \centering
+    \vspace*{1cm}
+
+    {\Huge \textbf{Práctica 3: Extracción de Totales en Facturas mediante OCR y Machine Learning} \par}
+    \vspace{1.5cm}
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.6\textwidth]{figures/Logo_URJC.png}
+    \end{figure}
+
+    \vfill
+
+    {\large \textbf{Autores:} \par}
+    \vspace{0.3cm}
+    {\large Diego Esclarín (51729611N) \par}
+    {\large Sofía Contreras (09848471D) \par}
+
+    \vspace{1.5cm}
+
+    {\large Aplicaciones de Inteligencia Artificial \par}
+    {\large Grado en Ingeniería en Inteligencia Artificial \par}
+    {\large Universidad Rey Juan Carlos \par}
+    {\large Curso 2025--26 \par}
+
+\end{titlepage}
+\setcounter{page}{0}
+
+% --- Página 2: Blanco (Interna 0) ---
+\blankpage
+
+% --- Página 3: Índice de contenidos (Interna 1) ---
+\thispagestyle{empty}
+\tableofcontents
+\newpage
+
+% --- Página 4: Blanco (Interna 2) ---
+\thispagestyle{empty}
+\mbox{}
+\newpage
+
+% --- Índice de figuras (página impar) ---
+\thispagestyle{empty}
+\listoffigures
+\cleardoublepage
+
+% --- Página 5+: Inicio del contenido ---
+\pagestyle{plain}
+
+\input{sections/1_introduccion}
+\cleardoublepage
+
+\input{sections/2_contexto}
+\cleardoublepage
+
+\input{sections/3_estado_arte}
+\cleardoublepage
+
+\input{sections/4_propuesta}
+\cleardoublepage
+
+\input{sections/5_conclusiones}
+
+% --- Referencias en página impar ---
+\cleardoublepage
+\printbibliography[title={Referencias Bibliográficas}]
+
+\end{document}
