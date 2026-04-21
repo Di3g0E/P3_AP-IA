@@ -68,22 +68,38 @@ Se pueden realizar multiples capturas sin reiniciar el programa.
                   factura_03.png  ->  Total: no encontrado
 ```
 
-## Entornos virtuales
+## Configuración del Entorno de Ejecución (PaddleOCR)
 
-El proyecto tiene dos entornos:
+Para asegurar una ejecución correcta del pipeline principal (83.2% accuracy) y evitar conflictos de versiones (especialmente con NumPy y Paddle), sigue estos pasos para configurar el entorno desde cero:
 
-| Entorno | Python | OCR | Uso |
-|---------|--------|-----|-----|
-| `.venv` | 3.13 | EasyOCR | Entrenamiento, comparativas, tests originales |
-| `.venv_paddle` | 3.12 | PaddleOCR + EasyOCR | Pipeline final, tests de rendimiento |
+*   **Python:** 3.10 - 3.12 (Recomendado 3.12 en Windows).
+*   **SO:** Windows 10/11, Linux o macOS.
 
-```bash
-# Activar entorno principal (EasyOCR)
-.venv\Scripts\activate
+### Instalación paso a paso:
 
-# Activar entorno PaddleOCR
-.venv_paddle\Scripts\activate
-```
+1. **Crear y activar un entorno virtual limpio:**
+   ```bash
+   py -3.12 -m venv .venv
+   .venv\Scripts\activate      # En Windows
+   source .venv/bin/activate   # En Linux/Mac
+   ```
+
+2. **Actualizar el gestor de paquetes (pip):**
+   ```bash
+   python -m pip install --upgrade pip
+   ```
+
+3. **Instalar todas las dependencias:**
+   Ejecuta el siguiente comando. Se utiliza un índice (mirror) específico para agilizar la descarga de los paquetes pesados de PaddlePaddle:
+   ```bash
+   pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+   ```
+
+### Notas críticas de compatibilidad:
+
+*   **NumPy < 2.0.0:** El proyecto requiere **NumPy 1.26.x**. La versión 2.0.x de NumPy es incompatible con los binarios actuales de PaddleOCR y con la serialización de los modelos `joblib` incluidos.
+*   **PaddlePaddle CPU vs GPU:** Por defecto, `requirements.txt` instala la versión de **CPU** (`paddlepaddle`). Si deseas utilizar aceleración por GPU (NVIDIA), deberás instalar `paddlepaddle-gpu` en su lugar.
+*   **urllib3 < 2.0:** Necesario para evitar advertencias de dependencias en las comunicaciones del motor OCR.
 
 ## Estructura del proyecto
 

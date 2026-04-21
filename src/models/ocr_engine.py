@@ -161,7 +161,7 @@ class OptimizedOCREngine:
         # 1 — Intentar PaddleOCR
         try:
             from paddleocr import PaddleOCR
-            self._ocr = PaddleOCR(use_angle_cls=True, lang="en", show_log=False)
+            self._ocr = PaddleOCR(use_angle_cls=True, lang="en")
             self._ocr_type = "paddle"
             logger.info("PaddleOCR inicializado.")
         except Exception as e:
